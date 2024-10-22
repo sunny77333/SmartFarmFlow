@@ -24,6 +24,7 @@
         android:layout_marginTop="16dp"
         android:paddingBottom="8dp"
         android:text="Login"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -34,8 +35,8 @@
         android:hint="Username"
         android:layout_marginTop="16dp"
         android:padding="10dp"
-    android:textColor="@android:color/black"
-    android:inputType="text"/>
+        android:textColor="@android:color/black"
+        android:inputType="text"/>
 
 
     <EditText
@@ -85,6 +86,7 @@
             android:backgroundTint="@android:color/black"
             android:textColor="@android:color/white"
             android:layout_marginStart="8dp"/>
+
 
     </LinearLayout>
 </LinearLayout>

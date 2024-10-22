@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1035006733001",
+    "firebase_url": "https://farmflow-ead91-default-rtdb.firebaseio.com",
+    "project_id": "farmflow-ead91",
+    "storage_bucket": "farmflow-ead91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035006733001:android:fe44ac0a6779ee3a2abb18",
+        "android_client_info": {
+          "package_name": "com.example.smartfarmflow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlljhC4aCYJXt_Lwr5GfJyiD6TqAxXg70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 } else if (itemId == R.id.nav_tags) {
-                    Intent intent = new Intent(MainActivity.this, LivestockTagsActivity.class);
+                    Intent intent = new Intent(MainActivity.this, LivestockActivity.class);
                     startActivity(intent);
                     return true;
                 } else {
