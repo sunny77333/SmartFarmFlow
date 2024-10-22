@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/livestock_tag_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/cattleicon" />
+
+    <TextView
+        android:id="@+id/livestock_tag_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#1"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+</LinearLayout>

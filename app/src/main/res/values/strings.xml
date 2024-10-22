@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SmartFarmFlow</string>
+
+
+        <string-array name="livestock_array">
+            <item>Sheep</item>
+            <item>Cows</item>
+            <item>Bulls</item>
+        </string-array>
+
+
 </resources>
