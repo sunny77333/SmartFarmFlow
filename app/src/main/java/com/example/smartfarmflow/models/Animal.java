@@ -19,11 +19,14 @@ public class Animal implements Serializable {
     private String eatTime;
     private String drinkTime;
     private String tagNumber;
+    private String latitude;
+    private String longitude;
 
     public Animal() {
     }
 
-    public Animal(String id, String name, String species, String gender, String status, String ageYears, String ageMonths, String temperature, String weight, String activityDate, String standTime, String walkTime, String sitTime, String eatTime, String drinkTime, String tagNumber) {
+    public Animal(String id, String name, String species, String gender, String status, String ageYears, String ageMonths, String temperature, String weight, String activityDate, String standTime, String walkTime, String sitTime, String eatTime, String drinkTime, String tagNumber, String latitude,
+                  String longitude) {
         this.id = id;
         this.name = name;
         this.species = species;
@@ -40,6 +43,8 @@ public class Animal implements Serializable {
         this.eatTime = eatTime;
         this.drinkTime = drinkTime;
         this.tagNumber = tagNumber;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     // Getters and setters methods
@@ -174,4 +179,12 @@ public class Animal implements Serializable {
     public String getAge() {
         return ageYears + " years " + ageMonths + " months";
     }
+
+    public String getLatitude() {return latitude;}
+
+    public void setLatitude(String latitude) {this.latitude = latitude;}
+
+    public String getLongitude() {return longitude;}
+
+    public void setLongitude(String longitude) {this.longitude = longitude;}
 }

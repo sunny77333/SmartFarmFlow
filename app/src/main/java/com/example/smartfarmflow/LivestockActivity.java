@@ -1,7 +1,9 @@
 package com.example.smartfarmflow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartfarmflow.adapters.LivestockAdapter;
 import com.example.smartfarmflow.models.Animal;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +40,8 @@ public class LivestockActivity extends AppCompatActivity {
         livestockRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         fetchLivestockData();
+
+        setupBottomNavigationView();
     }
 
     private void fetchLivestockData() {
@@ -61,5 +66,40 @@ public class LivestockActivity extends AppCompatActivity {
                 Log.e("LivestockActivity", "Failed to fetch data.", databaseError.toException());
             }
         });
+    }
+
+    private void setupBottomNavigationView() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setSelectedItemId(R.id.nav_tags);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemId = menuItem.getItemId();
+
+                if (itemId == R.id.nav_home) {
+
+                    startActivity(new Intent(LivestockActivity.this, MainActivity.class));
+                    return true;
+
+                } else if (itemId == R.id.nav_map) {
+
+                    startActivity(new Intent(LivestockActivity.this, farmMapsActivity.class));
+                    return true;
+
+                } else if (itemId == R.id.nav_tags) {
+                    return true;
+
+                } else if (itemId == R.id.nav_profile) {
+                    startActivity(new Intent(LivestockActivity.this, farmMapsActivity.class));
+                    return true;
+
+                } else {
+                    return false;
+                }
+            }
+        });
+
     }
 }
