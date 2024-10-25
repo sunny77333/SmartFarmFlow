@@ -34,6 +34,7 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maps_activity);
+        overridePendingTransition(0, 0);
 
         animalRef = FirebaseDatabase.getInstance().getReference("users/user1/livestock");
 
@@ -54,6 +55,8 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
         animalRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean isFirstAnimal = true; 
+
                 for (DataSnapshot animalTypeSnapshot : snapshot.getChildren()) {
                     for (DataSnapshot animalSnapshot : animalTypeSnapshot.getChildren()) {
                         Animal animal = animalSnapshot.getValue(Animal.class);
@@ -62,9 +65,15 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
                                     Double.parseDouble(animal.getLatitude()),
                                     Double.parseDouble(animal.getLongitude())
                             );
+
                             mMap.addMarker(new MarkerOptions()
                                     .position(animalLocation)
                                     .title(animal.getName()));
+
+                            if (isFirstAnimal) {
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(animalLocation, 80));
+                                isFirstAnimal = false;
+                            }
                         }
                     }
                 }
@@ -72,13 +81,13 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
 
     private void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         bottomNavigationView.setSelectedItemId(R.id.nav_map);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -98,7 +107,7 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
                     return true;
 
                 } else if (itemId == R.id.nav_profile) {
-                    startActivity(new Intent(farmMapsActivity.this, farmMapsActivity.class));
+                    startActivity(new Intent(farmMapsActivity.this, profileActivity.class));
                     return true;
 
                 } else {

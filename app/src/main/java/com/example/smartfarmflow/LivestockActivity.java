@@ -33,6 +33,7 @@ public class LivestockActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_livestock_tags);
+        overridePendingTransition(0, 0);
 
         farmersRef = FirebaseDatabase.getInstance().getReference("users/user1/livestock");
 
@@ -92,7 +93,7 @@ public class LivestockActivity extends AppCompatActivity {
                     return true;
 
                 } else if (itemId == R.id.nav_profile) {
-                    startActivity(new Intent(LivestockActivity.this, farmMapsActivity.class));
+                    startActivity(new Intent(LivestockActivity.this, profileActivity.class));
                     return true;
 
                 } else {

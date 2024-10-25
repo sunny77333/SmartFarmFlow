@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboardpage);
-
+        overridePendingTransition(0, 0);
 
         setupBottomNavigationView();
     }
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 } else if (itemId == R.id.nav_profile) {
-                    startActivity(new Intent(MainActivity.this, farmMapsActivity.class));
+                    startActivity(new Intent(MainActivity.this, profileActivity.class));
                     return true;
 
                 } else {
