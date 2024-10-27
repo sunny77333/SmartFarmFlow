@@ -1,8 +1,15 @@
 package com.example.smartfarmflow;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -26,9 +33,10 @@ import java.util.List;
 
 public class farmMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
-    private DatabaseReference animalRef;
-    private List<Animal> animalList = new ArrayList<>();
+    private GoogleMap mMap; // Declaring Google Map object for displaying the map
+    private DatabaseReference animalRef; // Reference to the Firebase database
+    private List<Animal> animalList = new ArrayList<>(); // List to store animal data
+    private String userId;  // Declaring a string variable to store the User ID to dynamically fetch data from firebase
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +44,20 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
         setContentView(R.layout.maps_activity);
         overridePendingTransition(0, 0);
 
-        animalRef = FirebaseDatabase.getInstance().getReference("users/user1/livestock");
+        // Retrieving the user id from userSession
+        userId = userSession.getInstance().getUserId();
+
+        if (userId != null) {
+            // Set the Firebase reference to the logged-in user's livestock data based on user id
+            animalRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("livestock");
+        } else {
+            Toast.makeText(this, "User ID not found, cannot load livestock data.", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        // Log userId for debugging
+        Log.d("farmMapsActivity", "User ID: " + userId);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -45,18 +66,25 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
         setupBottomNavigationView();
     }
 
+    /**
+     * Setting the Google Map object and loading animal markers on the map.
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         loadAnimalMarkers();
     }
 
+    /**
+     * Loads markers on the map for each animal's location based on latitude and longitude values.
+     */
     private void loadAnimalMarkers() {
         animalRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean isFirstAnimal = true; 
+                boolean isFirstAnimal = true;
 
+                //Loop through each animal type and add markers for each animal
                 for (DataSnapshot animalTypeSnapshot : snapshot.getChildren()) {
                     for (DataSnapshot animalSnapshot : animalTypeSnapshot.getChildren()) {
                         Animal animal = animalSnapshot.getValue(Animal.class);
@@ -66,12 +94,14 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
                                     Double.parseDouble(animal.getLongitude())
                             );
 
+                            //Add marker for each animal with it name attached
                             mMap.addMarker(new MarkerOptions()
                                     .position(animalLocation)
                                     .title(animal.getName()));
 
+                            //Center camera on the first animal
                             if (isFirstAnimal) {
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(animalLocation, 80));
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(animalLocation, 10));
                                 isFirstAnimal = false;
                             }
                         }
@@ -81,13 +111,16 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("farmMapsActivity", "Failed to load animal markers", error.toException());
             }
         });
     }
 
+    /**
+     * Sets up the bottom navigation view with listeners for each menu item to navigate to different activities.
+     */
     private void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         bottomNavigationView.setSelectedItemId(R.id.nav_map);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -96,18 +129,18 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
                 int itemId = menuItem.getItemId();
 
                 if (itemId == R.id.nav_home) {
-                    startActivity(new Intent(farmMapsActivity.this, MainActivity.class));
+                    startActivity(new Intent(farmMapsActivity.this, MainActivity.class).putExtra("USER_ID", userId));
                     return true;
 
                 } else if (itemId == R.id.nav_map) {
                     return true;
 
                 } else if (itemId == R.id.nav_tags) {
-                    startActivity(new Intent(farmMapsActivity.this, LivestockActivity.class));
+                    startActivity(new Intent(farmMapsActivity.this, LivestockActivity.class).putExtra("USER_ID", userId));
                     return true;
 
                 } else if (itemId == R.id.nav_profile) {
-                    startActivity(new Intent(farmMapsActivity.this, profileActivity.class));
+                    startActivity(new Intent(farmMapsActivity.this, profileActivity.class).putExtra("USER_ID", userId));
                     return true;
 
                 } else {

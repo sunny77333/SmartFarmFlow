@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editText_animal_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Animal Name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_animal_gender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Gender"
+        app:layout_constraintTop_toBottomOf="@id/editText_animal_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/editText_age_years"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Age (Years)"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/editText_animal_gender"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/editText_age_months"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Age (Months)"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/editText_age_years"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spinner_animal_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/animal_types"
+        app:layout_constraintTop_toBottomOf="@id/editText_age_months"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/button_add_animal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add Animal"
+        android:backgroundTint="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/spinner_animal_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

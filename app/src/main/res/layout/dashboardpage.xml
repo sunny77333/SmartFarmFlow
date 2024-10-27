@@ -1,9 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="24dp"
-    android:background="#F8F8F8">
+    android:padding="5dp"
+    android:background="#E9E8DE">
 
     <LinearLayout
         android:id="@+id/header"
@@ -12,6 +12,9 @@
         android:orientation="horizontal"
         android:layout_alignParentTop="true"
         android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp">
 
         <ImageView
@@ -26,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hi, James"
-            android:textSize="24sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
     </LinearLayout>
@@ -40,6 +43,9 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:background="@drawable/outline_border"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:weightSum="4">
 
         <LinearLayout
@@ -56,19 +62,20 @@
                 android:src="@drawable/heaticon"/>
 
             <TextView
+                android:id="@+id/heat_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:gravity="center"
                 android:text="1"
-                android:textSize="18sp"
-                android:gravity="center"/>
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:text="Heat"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:gravity="center"/>
         </LinearLayout>
 
@@ -86,20 +93,21 @@
                 android:src="@drawable/thermometericon"/>
 
             <TextView
+                android:id="@+id/sick_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:gravity="center"
                 android:text="3"
-                android:textSize="18sp"
-                android:gravity="center"/>
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:gravity="center"
                 android:text="Sick"
-                android:textSize="16sp"
-                android:gravity="center"/>
+                android:textColor="@color/black"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,11 +124,12 @@
                 android:src="@drawable/pregnanticon"/>
 
             <TextView
+                android:id="@+id/pregnant_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:gravity="center"/>
 
             <TextView
@@ -129,7 +138,7 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:text="Pregnant"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,19 +155,20 @@
                 android:src="@drawable/medicineicon" />
 
             <TextView
+                android:id="@+id/medicated_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="2"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:gravity="center"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:text="Medicated"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:gravity="center"/>
         </LinearLayout>
 
@@ -168,19 +178,24 @@
         android:id="@+id/livestock_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="James livestock"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:textColor="@color/black"
-        android:layout_below="@id/status_summary"
-        android:layout_marginTop="16dp"/>
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/status_summary" />
 
     <LinearLayout
         android:id="@+id/livestock_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/livestock_ino"
+        app:layout_constraintTop_toBottomOf="@id/livestock_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp">
 
         <TextView
@@ -190,36 +205,39 @@
             android:textColor="@color/black"
             android:layout_weight="1"
             android:text="Heifer 10"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_marginEnd="16dp"/>
 
         <TextView
-            android:id="@+id/bulls_count"
+            android:id="@+id/bull_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:text="Bull 3"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_marginEnd="16dp"/>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/livestock_ino"
+        android:id="@+id/livestock_info1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/livestock_label"
+        app:layout_constraintTop_toBottomOf="@id/livestock_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp">
 
         <TextView
-            android:id="@+id/cows_count"
+            android:id="@+id/cow_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:text="Cows 10"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_marginEnd="16dp"/>
 
         <TextView
@@ -229,7 +247,7 @@
             android:textColor="@color/black"
             android:layout_weight="1"
             android:text="Sheep 3"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_marginEnd="16dp"/>
     </LinearLayout>
 
@@ -237,21 +255,29 @@
         android:id="@+id/total_livestock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.0"
         android:text="Total Livestock 26"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColor="#459148"
+        android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/livestock_info1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_below="@id/livestock_info"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/weather_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Current Weather"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textColor="@color/black"
         android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/total_livestock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_below="@id/total_livestock"
         android:layout_marginTop="16dp"/>
 
@@ -260,12 +286,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/weather_label"
+        app:layout_constraintTop_toBottomOf="@id/weather_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@id/total_livestock"
         android:layout_marginTop="8dp">
 
         <LinearLayout
+            android:id="@+id/today_weather"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="130dp"
             android:layout_weight="1"
             android:layout_marginRight="10dp"
             android:background="@drawable/weatherbackground"
@@ -297,7 +327,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="130dp"
             android:layout_weight="1"
             android:layout_marginRight="10dp"
             android:background="@drawable/weatherbackground"
@@ -312,7 +342,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sun."
+                android:text="Mon."
                 android:layout_marginTop="30dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -329,7 +359,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="130dp"
             android:layout_weight="1"
             android:layout_marginRight="10dp"
             android:background="@drawable/weatherbackground"
@@ -344,7 +374,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sun."
+                android:text="Tue."
                 android:layout_marginTop="30dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -360,7 +390,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="130dp"
             android:layout_weight="1"
             android:background="@drawable/weatherbackground"
             android:orientation="vertical"
@@ -374,7 +404,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sun."
+                android:text="Wed."
                 android:textColor="@color/black"
                 android:layout_marginTop="30dp"
                 android:textSize="16sp"
@@ -397,9 +427,12 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="Latest Alerts"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold"
-        android:layout_below="@id/weather_forecast"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_forecast"
         android:layout_marginTop="16dp"/>
 
     <LinearLayout
@@ -407,13 +440,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@drawable/outline_border"
         android:layout_below="@id/alerts_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/alerts_label"
         android:layout_marginTop="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -440,16 +478,84 @@
                 android:textSize="14sp"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/alerticons"/>
+
+            <TextView
+                android:id="@+id/alert_text2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:text="Dolly is sick need urgent action"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/alert_time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="10m ago"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/alerticons"/>
+
+            <TextView
+                android:id="@+id/alert_text3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:text="New sheep was added to the farm!"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/alert_time3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="23m ago"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@android:color/white"
         app:itemIconTint="@drawable/nav_item_color"
         app:menu="@menu/bottom_nav_menu"
-        android:elevation="8dp"/>
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

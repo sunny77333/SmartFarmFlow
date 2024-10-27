@@ -8,5 +8,12 @@
             <item>Bulls</item>
         </string-array>
 
+    <string-array name="animal_types">
+        <item>Sheep</item>
+        <item>Heifer</item>
+        <item>Cow</item>
+        <item>Bull</item>
+    </string-array>
+
 
 </resources>

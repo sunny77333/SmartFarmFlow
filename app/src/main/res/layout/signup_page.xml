@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#F8F8F8">
+    android:padding="5dp"
+    android:background="#E9E8DE">
 
+      <!-- Farm Flow App logo -->
     <ImageView
         android:id="@+id/logo"
         android:layout_width="200dp"
@@ -16,6 +17,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="24dp" />
 
+
+    <!-- Sign-up heading -->
+    <TextView
+        android:id="@+id/signup_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+     <!-- Username input field -->
     <EditText
         android:id="@+id/signup_username"
         android:layout_width="0dp"
@@ -24,8 +40,9 @@
         app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="60dp" />
 
+    <!-- Email input field -->
     <EditText
         android:id="@+id/signup_email"
         android:layout_width="0dp"
@@ -37,6 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
+     <!-- Password input field -->
     <EditText
         android:id="@+id/signup_password"
         android:layout_width="0dp"
@@ -48,6 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
+      <!-- Location input field -->
     <EditText
         android:id="@+id/signup_location"
         android:layout_width="0dp"
@@ -58,6 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
+    <!-- Farm name input field -->
     <EditText
         android:id="@+id/signup_farmname"
         android:layout_width="0dp"
@@ -68,14 +88,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
+     <!-- Sign-up button -->
     <Button
         android:id="@+id/signup_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/signup_farmname"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Sign up"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signup_farmname" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

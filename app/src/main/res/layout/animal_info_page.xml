@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F8F8F8">
+    android:padding="5dp"
+    android:background="#E9E8DE">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4 years 1 month"
-                    android:textSize="14sp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/darker_gray" />
 
                 <TextView
@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Female"
-                    android:textSize="14sp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>
         </LinearLayout>
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Status: Healthy"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textColor="@android:color/holo_green_dark"
             android:layout_marginTop="16dp" />
 
@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Temperature"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
 
@@ -125,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="36 Celsius"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/holo_green_dark" />
             </LinearLayout>
 
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Weight"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
 
@@ -152,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="90kg"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/holo_green_dark" />
             </LinearLayout>
         </LinearLayout>
@@ -161,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Activity Levels"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:layout_marginTop="16dp" />
@@ -173,7 +173,7 @@
             android:layout_marginBottom="8dp"
             android:text="20 Jan, 2024"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <GridLayout
             android:layout_width="match_parent"
@@ -197,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Stand"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
 
@@ -207,7 +207,7 @@
                     android:layout_height="wrap_content"
                     android:text="01:45:53"
                     android:textColor="@android:color/holo_green_dark"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -223,16 +223,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Walk"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/walk_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="03:24:33"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/holo_green_dark" />
             </LinearLayout>
 
@@ -249,7 +249,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sit"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
 
@@ -258,7 +258,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="03:15:24"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/holo_green_dark" />
             </LinearLayout>
 
@@ -275,7 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Eat"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
 
@@ -284,7 +284,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="01:30:22"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/holo_green_dark" />
             </LinearLayout>
 
@@ -301,7 +301,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Drink"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
 
@@ -310,7 +310,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="00:45:53"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/holo_green_dark" />
             </LinearLayout>
         </GridLayout>
