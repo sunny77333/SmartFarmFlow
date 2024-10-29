@@ -71,10 +71,14 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        loadAnimalMarkers();
+        if (googleMap != null) {
+            mMap = googleMap;
+            mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE); // Set map to satellite mode
+            loadAnimalMarkers();
+        } else {
+            Log.e("farmMapsActivity", "GoogleMap is null in onMapReady");
+        }
     }
-
     /**
      * Loads markers on the map for each animal's location based on latitude and longitude values.
      */

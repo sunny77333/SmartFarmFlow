@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class signupActivity extends AppCompatActivity {
     private EditText usernameEditText, emailEditText, passwordEditText, locationEditText, farmNameEditText;
     private Button signupButton;
     private DatabaseReference usersRef;
+    private ImageView backButton ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class signupActivity extends AppCompatActivity {
         locationEditText = findViewById(R.id.signup_location);
         farmNameEditText = findViewById(R.id.signup_farmname);
         signupButton = findViewById(R.id.signup_button);
+        backButton = findViewById(R.id.back_arrow);
 
         // Setting up the signup button click listener
         signupButton.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +56,17 @@ public class signupActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(signupActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        //setting the onClickListener for the back arrow button
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the LivestockActivity page
+                Intent intent = new Intent(signupActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

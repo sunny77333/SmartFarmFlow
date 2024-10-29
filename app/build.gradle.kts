@@ -43,8 +43,7 @@ android {
 }
 
 dependencies {
-    androidTestImplementation ("androidx.benchmark:benchmark-macro-junit4:<version>")
-    implementation ("com.google.firebase:firebase-perf")
+
     implementation ("com.google.firebase:firebase-database:20.0.3")
     implementation(platform("com.google.firebase:firebase-bom:33.5.0"))
     implementation("com.google.firebase:firebase-analytics")
