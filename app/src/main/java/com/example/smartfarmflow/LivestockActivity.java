@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +39,9 @@ public class LivestockActivity extends AppCompatActivity {
     private List<Animal> animalList = new ArrayList<>();
     private DatabaseReference farmersRef; // Reference to the Firebase database for data retrieval
     private String userId; // Declaring a string variable to store the User ID to dynamically fetch data from firebase
+    private Spinner animalTypeSpinner;
+    private List<Animal> filteredAnimalList = new ArrayList<>(); // Store filtered animals here
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,7 @@ public class LivestockActivity extends AppCompatActivity {
         livestockRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button addAnimalButton = findViewById(R.id.button_open_add_animal_dialog);
 
+        animalTypeSpinner = findViewById(R.id.livestock_spinner);
 
 
         // Retrieving the user id from userSession
@@ -65,6 +71,21 @@ public class LivestockActivity extends AppCompatActivity {
         fetchLivestockData();
         setupBottomNavigationView();
         addAnimalButton.setOnClickListener(v -> showAddAnimalDialog());
+        livestockRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+        animalTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedType = parent.getItemAtPosition(position).toString();
+                filterAnimalsByType(selectedType);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                filterAnimalsByType("All"); // Show all animals if no type is selected
+            }
+        });
+
     }
     /**
      * Fetches livestock data from Firebase and updates the RecyclerView.
@@ -82,8 +103,11 @@ public class LivestockActivity extends AppCompatActivity {
                         }
                     }
                 }
-                livestockAdapter = new LivestockAdapter(LivestockActivity.this, animalList); // Pass userId here
+                livestockAdapter = new LivestockAdapter(LivestockActivity.this, filteredAnimalList);
                 livestockRecyclerView.setAdapter(livestockAdapter);
+
+                // Initially, display all animals
+                filterAnimalsByType("All");
             }
 
             @Override
@@ -92,6 +116,39 @@ public class LivestockActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void filterAnimalsByType(String type) {
+        filteredAnimalList.clear();
+
+        if (type.equals("All")) {
+            // If "All" is selected add all animals from each type
+            filteredAnimalList.addAll(animalList);
+            livestockAdapter.notifyDataSetChanged();
+            return;
+        }
+
+
+        farmersRef.child(type.toLowerCase()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                filteredAnimalList.clear();
+                for (DataSnapshot animalSnapshot : dataSnapshot.getChildren()) {
+                    Animal animal = animalSnapshot.getValue(Animal.class);
+                    if (animal != null) {
+                        filteredAnimalList.add(animal);
+                    }
+                }
+                // Update the RecyclerView with the filtered animals
+                livestockAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("LivestockActivity", "Error fetching animals by type", databaseError.toException());
+            }
+        });
+    }
+
 
     /**
      * Displays a dialog to add a new animal to the livestock.

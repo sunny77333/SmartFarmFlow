@@ -2,11 +2,13 @@
     <string name="app_name">SmartFarmFlow</string>
 
 
-        <string-array name="livestock_array">
-            <item>Sheep</item>
-            <item>Cows</item>
-            <item>Bulls</item>
-        </string-array>
+    <string-array name="livestock_array">
+        <item>All</item>
+        <item>Cows</item>
+        <item>Sheep</item>
+        <item>Heifers</item>
+        <item>Bulls</item>
+    </string-array>
 
     <string-array name="animal_types">
         <item>Sheep</item>

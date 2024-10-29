@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Button;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +54,15 @@ public class profileActivity extends AppCompatActivity {
 
         fetchProfileInfo(); // Calling the method to fetch and display profile information
         setupBottomNavigationView();
+
+        // Initialize logout button and set click listener
+        Button logoutButton = findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
     }
 
     /**
@@ -83,6 +95,20 @@ public class profileActivity extends AppCompatActivity {
                 Log.e("profileActivity", "Error loading profile data", error.toException());
             }
         });
+    }
+
+    /**
+     * Clears the user session data and navigates to LoginActivity.
+     */
+    private void logout() {
+        // Clear user session
+        userSession.getInstance().clearSession();
+
+        // Navigate to LoginActivity
+        Intent intent = new Intent(profileActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     /**
