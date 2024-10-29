@@ -20,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
     // Declaring variables for the UI elements and Firebase database
     private TextView heatCount, sickCount, pregnantCount, medicatedCount;
     private TextView cowCount, sheepCount, heiferCount, bullCount, totalLivestock;
-    private DatabaseReference livestockRef;
+    private DatabaseReference livestockRef, userRef;
     private String userId;
+    private TextView greeting; // TextView for the greeting message
 
 
     @Override
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set the Firebase reference to the logged-in user's livestock data based on user id
         livestockRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("livestock");
-
+        userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
         // Initialising the UI elements
         heatCount = findViewById(R.id.heat_count);
         sickCount = findViewById(R.id.sick_count);
@@ -51,9 +52,33 @@ public class MainActivity extends AppCompatActivity {
         heiferCount = findViewById(R.id.heifer_count);
         bullCount = findViewById(R.id.bull_count);
         totalLivestock = findViewById(R.id.total_livestock);
+        greeting = findViewById(R.id.greeting);
 
+        fetchGreeting();
         // Call the method to fetch and update the dashboard data
         fetchDashboardData();
+    }
+
+    /**
+     * Fetches and displays the greeting message from Firebase Realtime Database
+     */
+    private void fetchGreeting() {
+        userRef.child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String username = dataSnapshot.getValue(String.class);
+                if (username != null) {
+                    greeting.setText("Hi, " + username);
+                } else {
+                    greeting.setText("Hi, User");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("MainActivity", "Error loading greeting", databaseError.toException());
+            }
+        });
     }
 
     /**
