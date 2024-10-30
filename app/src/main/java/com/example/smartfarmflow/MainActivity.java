@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference livestockRef, userRef;
     private String userId;
     private TextView greeting; // TextView for the greeting message
+    private TextView livestockLabel;
 
 
     @Override
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         bullCount = findViewById(R.id.bull_count);
         totalLivestock = findViewById(R.id.total_livestock);
         greeting = findViewById(R.id.greeting);
+        livestockLabel = findViewById(R.id.livestock_label);
 
         fetchGreeting();
         // Call the method to fetch and update the dashboard data
@@ -69,8 +71,10 @@ public class MainActivity extends AppCompatActivity {
                 String username = dataSnapshot.getValue(String.class);
                 if (username != null) {
                     greeting.setText("Hi, " + username);
+                    livestockLabel.setText(username + " livestock");
                 } else {
                     greeting.setText("Hi, User");
+                    livestockLabel.setText("User's livestock");
                 }
             }
 
@@ -110,16 +114,16 @@ public class MainActivity extends AppCompatActivity {
 
                         // Count the number of each type of livestock
                         switch (type) {
-                            case "cows":
+                            case "cow":
                                 cowCounter++;
                                 break;
-                            case "sheeps":
+                            case "sheep":
                                 sheepCounter++;
                                 break;
-                            case "heifers":
+                            case "heifer":
                                 heiferCounter++;
                                 break;
-                            case "bulls":
+                            case "bull":
                                 bullCounter++;
                                 break;
                         }
@@ -135,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 pregnantCount.setText(String.valueOf(pregnantCounter));
                 medicatedCount.setText(String.valueOf(medicatedCounter));
                 cowCount.setText("Cows: " + cowCounter);
-                sheepCount.setText("  Sheep: " + sheepCounter);
+                sheepCount.setText("  Sheeps: " + sheepCounter);
                 heiferCount.setText("Heifers: " + heiferCounter);
                 bullCount.setText("Bulls: " + bullCounter);
                 totalLivestock.setText("Total Livestock: " + totalCounter);

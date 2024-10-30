@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class LivestockActivity extends AppCompatActivity {
 
@@ -203,7 +204,18 @@ public class LivestockActivity extends AppCompatActivity {
     private void addAnimalToDatabase(String name, String gender, String ageYears, String ageMonths, String animalType) {
         String animalId = farmersRef.push().getKey();
 
-        //Defining the animal data to be stored in the database
+        // Define the central latitude and longitude
+        final double BASE_LATITUDE = -36.961651;
+        final double BASE_LONGITUDE = 174.972320;
+        final double METERS_TO_DEGREES = 0.0009;
+
+        // Generate random offsets within 100 meters
+        double latOffset = (new Random().nextDouble() * 2 - 1) * METERS_TO_DEGREES;
+        double lonOffset = (new Random().nextDouble() * 2 - 1) * METERS_TO_DEGREES;
+        double randomLatitude = BASE_LATITUDE + latOffset;
+        double randomLongitude = BASE_LONGITUDE + lonOffset;
+
+        // Define the animal data
         Map<String, Object> animalData = new HashMap<>();
         animalData.put("name", name);
         animalData.put("gender", gender);
@@ -212,8 +224,8 @@ public class LivestockActivity extends AppCompatActivity {
         animalData.put("activityDate", "20 Jan, 2024");
         animalData.put("drinkTime", "01:00:00");
         animalData.put("eatTime", "02:00:00");
-        animalData.put("latitude", "-36.8485");
-        animalData.put("longitude", "174.7633");
+        animalData.put("latitude", String.valueOf(randomLatitude));
+        animalData.put("longitude", String.valueOf(randomLongitude));
         animalData.put("sitTime", "04:00:00");
         animalData.put("standTime", "02:15:00");
         animalData.put("status", "Healthy");
@@ -221,8 +233,12 @@ public class LivestockActivity extends AppCompatActivity {
         animalData.put("temperature", "37");
         animalData.put("walkTime", "01:30:00");
         animalData.put("weight", "150");
+        animalData.put("isHeat", false);
+        animalData.put("isSick", true);
+        animalData.put("isPregnant", false);
+        animalData.put("isMedicated", true);
 
-        //Storing the animal data in the database under the current user's livestock
+        //Adding the animal with data in the database under the current user's livestock
         if (animalId != null) {
             farmersRef.child(animalType.toLowerCase()).child(animalId).setValue(animalData)
                     .addOnCompleteListener(task -> {
@@ -234,6 +250,7 @@ public class LivestockActivity extends AppCompatActivity {
                     });
         }
     }
+
 
     /**
      * Sets up the bottom navigation view with listeners for each menu item to navigate to different activities.

@@ -105,7 +105,7 @@ public class farmMapsActivity extends FragmentActivity implements OnMapReadyCall
 
                             //Center camera on the first animal
                             if (isFirstAnimal) {
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(animalLocation, 10));
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(animalLocation, 16));
                                 isFirstAnimal = false;
                             }
                         }
