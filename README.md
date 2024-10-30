@@ -34,7 +34,7 @@ The app provides real-time data through Firebase integration and detailed animal
 
 5. **Run the App**  
     - Launch the app on an Android studio mobile emulator or a real Android device.
-    - Sign in using with dummy account to view system functionalities with existing data. Username: john and Password: john123   
+    - Sign in using with dummy account to view system functionalities with existing data. Username: John and Password: john123   
 
 ## System Requirements
 Android Version: The application is compatible with Android 11 (API 30) to Android 14 (API 34)
